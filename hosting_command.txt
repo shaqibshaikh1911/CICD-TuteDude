@@ -1,0 +1,59 @@
+# Update system
+sudo apt update && sudo apt upgrade -y
+
+# Install Python and pip
+sudo apt install python3 python3-pip python3-venv -y
+
+# Install Node.js and npm
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Install PM2 process manager
+sudo npm install -g pm2
+
+# Install Git
+sudo apt install git -y
+
+# Install Nginx (for reverse proxy, optional but recommended)
+sudo apt install nginx -y
+__________________________________________________________________________
+--------------------------------------------------------------------------
+
+
+git clone https://github.com/your-username/flask-backend.git
+git clone https://github.com/your-username/express-frontend.git
+
+__________________________________________________________________________
+--------------------------------------------------------------------------
+cd backend
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Test the application
+python app.py
+# Press Ctrl+C to stop after testing
+
+__________________________________________________________________________
+--------------------------------------------------------------------------
+
+cd ../frontend
+#
+# Install dependencies
+npm install
+
+# Test the application
+npm start
+# Press Ctrl+C to stop after testing
+
+__________________________________________________________________________
+--------------------------------------------------------------------------
+
+
+cd ~/app
+nano ecosystem.config.js
+
