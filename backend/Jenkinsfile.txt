@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    tools {
+        // This assumes you configured a JDK named 'jdk11' in Jenkins Tools
+        jdk 'jdk11'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                checkout scm // This checks out the code that triggered the pipeline
+            }
+        }
+
+        stage('Setup Virtual Environment') {
+            steps {
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                '''
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Restart Application with PM2') {
+            steps {
+                sh '''
+                    # PM2 is installed globally, so we don't need the venv
+                    # This command restarts the app named 'flask-backend' defined in our ecosystem.config.js
+                    # If it doesn't exist, it will be created
+                    pm2 restart ecosystem.config.js --only flask-backend --update-env || pm2 start ecosystem.config.js --only flask-backend
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up workspace after build
+            cleanWs()
+        }
+        success {
+            echo 'Flask backend deployed successfully!'
+        }
+        failure {
+            echo 'Flask backend deployment failed!'
+            // You could add email notification here
+        }
+    }
+}
