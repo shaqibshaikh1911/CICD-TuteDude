@@ -1,0 +1,52 @@
+# ==============================
+# Python (for your Flask backend)
+# ==============================
+# Virtual environment folder (very important!)
+venv/
+ENV/
+
+# Python bytecode compiled files
+__pycache__/
+*.py[cod]
+
+# Logs
+*.log
+
+# Environment variables (where you might store secrets!)
+.env
+.env.local
+
+# ==============================
+# Node.js (for your Express frontend)
+# ==============================
+# The biggest one! All dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# ==============================
+# Operating System and IDE files
+# ==============================
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# VS Code
+.vscode/
