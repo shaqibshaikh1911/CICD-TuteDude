@@ -18,7 +18,7 @@ module.exports = {
       args: 'start',
       env: {
         PORT: 3000,
-        API_URL: 'http://13.203.222.44:5000'
+        API_URL: 'http://3.109.58.15:5000'
       }
     }
   ]
