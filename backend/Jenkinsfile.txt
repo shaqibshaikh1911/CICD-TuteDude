@@ -38,7 +38,7 @@ pipeline {
                     # PM2 is installed globally, so we don't need the venv
                     # This command restarts the app named 'flask-backend' defined in our ecosystem.config.js
                     # If it doesn't exist, it will be created
-                    pm2 restart ecosystem.config.js --only flask-backend --update-env || pm2 start ecosystem.config.js --only flask-backend
+                    pm2 restart ecosystem.config.js --only backend --update-env || pm2 start ecosystem.config.js --only flask-backend
                 '''
             }
         }
