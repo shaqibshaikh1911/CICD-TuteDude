@@ -1,9 +1,9 @@
-// Jenkinsfile (Corrected Version)
+// Jenkinsfile (Final Version)
 pipeline {
     agent any
 
     stages {
-        // Stage 1: Set up the Python Backend (The old checkout stage is removed)
+        // Stage 1: Set up the Python Backend
         stage('Install Backend Dependencies') {
             steps {
                 dir('backend') {
@@ -27,7 +27,10 @@ pipeline {
         stage('Reload PM2') {
             steps {
                 echo 'Reloading applications with PM2...'
-                sh 'pm2 reload ecosystem.config.js'
+                // THIS BLOCK IS THE FIX
+                withEnv(['PM2_HOME=/home/ubuntu/.pm2']) {
+                    sh 'pm2 reload ecosystem.config.js'
+                }
             }
         }
     }
