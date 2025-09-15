@@ -1,4 +1,4 @@
-// Jenkinsfile (Final Version)
+// Jenkinsfile (Final Version with Deploy Stage)
 pipeline {
     agent any
 
@@ -8,7 +8,7 @@ pipeline {
             steps {
                 dir('backend') {
                     echo 'Installing Python packages...'
-                    sh '/home/ubuntu/app/CICD-TuteDude/backend/venv/bin/pip install -r requirements.txt'
+                    sh '/home/ubuntu/app/CICD-TudeDude/backend/venv/bin/pip install -r requirements.txt'
                 }
             }
         }
@@ -23,11 +23,20 @@ pipeline {
             }
         }
 
-        // Stage 3: Restart the Application
+        // Stage 3: Deploy Code to Live Directory (THE NEW STAGE)
+        stage('Deploy Code') {
+            steps {
+                echo 'Copying new code to the live application directory...'
+                // This command syncs the files from the Jenkins workspace
+                // to your live app folder.
+                sh 'rsync -av --delete ./ /home/ubuntu/app/CICD-TudeDude/'
+            }
+        }
+
+        // Stage 4: Restart the Application
         stage('Reload PM2') {
             steps {
                 echo 'Reloading applications with PM2...'
-                // THIS BLOCK IS THE FIX
                 withEnv(['PM2_HOME=/home/ubuntu/.pm2']) {
                     sh 'pm2 reload ecosystem.config.js'
                 }
