@@ -9,7 +9,7 @@ pipeline {
                 dir('backend') {
                     echo 'Installing Python packages...'
                     // THIS IS THE CHANGED COMMAND
-                    sh '/home/ubuntu/app/CICD-TudeDude/backend/venv/bin/python -m pip install -r requirements.txt'
+                    sh '/home/ubuntu/app/CICD-TuteDude/backend/venv/bin/python -m pip install -r requirements.txt'
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy Code') {
             steps {
                 echo 'Copying new code to the live application directory...'
-                sh 'rsync -av --delete ./ /home/ubuntu/app/CICD-TudeDude/'
+                sh 'rsync -av --delete ./ /home/ubuntu/app/CICD-TuteDude/'
             }
         }
 
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 echo 'Reloading applications with PM2...'
                 withEnv(['PM2_HOME=/home/ubuntu/.pm2']) {
-                    sh 'cd /home/ubuntu/app/CICD-TudeDude/ && pm2 reload ecosystem.config.js'
+                    sh 'cd /home/ubuntu/app/CICD-TuteDude/ && pm2 reload ecosystem.config.js'
                 }
             }
         }
