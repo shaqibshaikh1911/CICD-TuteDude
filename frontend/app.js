@@ -9,7 +9,7 @@ app.use(express.static('public'));
 // Routes
 app.get('/', (req, res) => {
   res.json({
-    message: "Welcome to the Simple Express Frontend",
+    message: "Welcome to the Simple Express Frontend:3000",
   });
 });
 
