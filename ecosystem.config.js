@@ -2,23 +2,20 @@ module.exports = {
   apps: [
     {
       name: 'flask-backend',
-      cwd: './backend',
-      script: 'python3',
+      cwd: '/home/ubuntu/app/CICD-TuteDude/backend',
+      script: '/home/ubuntu/app/CICD-TuteDude/backend/venv/bin/python',
       args: 'app.py',
-      interpreter: '',
       env: {
-        FLASK_ENV: 'production',
-        PORT: 5000
+        FLASK_ENV: 'production'
       }
     },
     {
       name: 'express-frontend',
-      cwd: './frontend',
+      cwd: '/home/ubuntu/app/CICD-TuteDude/frontend',
       script: 'npm',
       args: 'start',
       env: {
-        PORT: 3000,
-        API_URL: 'http://localhost:5000'
+        PORT: 3000
       }
     }
   ]

@@ -20,8 +20,8 @@ __________________________________________________________________________
 --------------------------------------------------------------------------
 
 
-git clone https://github.com/your-username/flask-backend.git
-git clone https://github.com/your-username/express-frontend.git
+git clone https://github.com/shaqibshaikh1911/CICD-TuteDude.git
+
 
 __________________________________________________________________________
 --------------------------------------------------------------------------
@@ -56,4 +56,9 @@ __________________________________________________________________________
 
 cd ~/app
 nano ecosystem.config.js
+pm2 start /home/ubuntu/app/CICD-TuteDude/ecosystem.config.js
 
+pm2 save
+pm2 startup
+
+pm2 detele all
