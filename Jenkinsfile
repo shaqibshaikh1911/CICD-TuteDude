@@ -26,20 +26,18 @@ pipeline {
 
         // Stage 3: Deploy Code to Live Directory
         stage('Deploy Code') {
-            steps {
-                echo 'Copying new code to the live application directory...'
-                sh 'rsync -av --delete ./ /home/ubuntu/app/CICD-TuteDude/'
-            }
-        }
+    steps {
+        echo 'Copying new code to the live application directory...'
+        sh '''
+          set -e
+          DEST="/home/ubuntu/app/CICD-TuteDude"
 
-        // Stage 4: Restart the Application
-        stage('Reload PM2') {
-            steps {
-                echo 'Reloading applications with PM2...'
-                withEnv(['PM2_HOME=/home/ubuntu/.pm2']) {
-                    sh 'cd /home/ubuntu/app/CICD-TuteDude/ && pm2 reload ecosystem.config.js'
-                }
-            }
-        }
+          rsync -rlptDz --delete \
+            --no-owner --no-group \
+            --exclude ".git/" \
+            --exclude "backend/venv/" \
+            --exclude "frontend/node_modules/" \
+            ./ "$DEST/"
+        '''
     }
 }
