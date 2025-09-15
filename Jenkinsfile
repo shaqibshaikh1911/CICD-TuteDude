@@ -22,6 +22,8 @@ pipeline {
           sudo mkdir -p /home/ubuntu/app
           sudo chown -R $(whoami):$(whoami) /home/ubuntu/app || true
           rsync -a --delete ./ "${BASE_DIR}/"
+           mkdir -p /home/ubuntu/app
+           rsync -a --delete ./ "${BASE_DIR}/"
         '''
       }
     }
