@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return jsonify({
-        "message": "Welcome to the Simple Flask Backend testing for jenkins"
+        "message": "Welcome to the Simple Flask Backend"
     })
 
 if __name__ == '__main__':
