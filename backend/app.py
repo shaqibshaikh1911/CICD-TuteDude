@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return jsonify({
-        "message": "Backend is working on port 5000"
+        "message": "Your potential is limitless—go prove it to yourself."
     })
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ app.use(express.static('public'));
 // Routes
 app.get('/', (req, res) => {
   res.json({
-    message: "Frontend is working on port 3000",
+    message: "Rise and shine—today's your day to conquer.",
   });
 });
 
